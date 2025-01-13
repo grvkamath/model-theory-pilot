@@ -1,6 +1,6 @@
 // TODO: 
 // Figure out the best way to deploy this website on some serve that can handle several requests
-
+//fnv1a64
 // set up experiment logic for each slide
 function make_slides(f) {
   var slides = {};
@@ -182,10 +182,11 @@ function init() {
   var stimuli = all_stims;
   
   // Get concept from stimuli
-  var country = get_url_param("country", "None");
-  var list_index = parseInt(get_url_param("list", 0));
+  var country = get_url_param("param1", "0000000000000000");
+  var list_index = parseInt(get_url_param("param2", 0));
+
   exp.stimuli = stimuli[list_index];
-  exp.country = country;
+  exp.country = countries[country];
 
   // Load country-specific content
   loadCountryContent(country);

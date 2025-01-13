@@ -10,13 +10,15 @@ def create_stimulus(data_path, output_path, num_examples=10):
     # concept, category, id
     stimuli = []
     for i, (k, v) in enumerate(data.items()):
-        for concept in v:
+        for j, concept in enumerate(v):
             stimulus = {
                 "concept": concept,
                 "category": k,
-                "id": f"{i:03d}_{concept}"
+                "id": f"{j:04d}_{concept}"
             }
             stimuli.append(stimulus)
+    
+    
     
     # Shuffle the stimuli
     random.seed(42)
