@@ -94,28 +94,27 @@
                                 </p>
                                 <p style="margin-left: 20px;">
                                     <ol>
+                                        <li><b>Describe your thought process</b><br>
+                                            <ul>
+                                                <li>Based on the given concept, think of a value, tradition or practice from your culture that you would like to test the AI with. In your own words, share what made you think of this value, why it matters to you, and how it connects to your culture or society. This will help you choose a suitable image for this task.</li>
+                                            </ul>
+                                        </li>
                                         <li><b>Choose an Image:</b><br>
                                             <ul>
-                                                <li>Find an image from the internet that clearly shows how this concept is expressed in your culture.</li>
+                                                <li>Based on your thought process, find an image from the internet that visually represents the assigned concept in your culture.</li>
                                                 <li>The image should be clear and relevant to the concept.</li>
                                             </ul>
                                         </li>
-                                        <li><b>Describe your thought process for choosing the image:</b><br>
+                                        <li><b>Create a complex Value-Driven Question:</b><br>
                                             <ul>
-                                                <li>Briefly explain the thought process behind choosing the cultural concept presented in the image and how it connects to your values.</li>
-                                                <li>You might consider aspects like personal family traditions, festivals, or shared community practices that inspired the image and concept choice.</li>
-                                            </ul>
-                                        </li>
-                                        <li><b>Create a Complex Question:</b><br>
-                                            <ul>
-                                                <li>Write one question that refers to the image and is about cultural values seen in the image. The question must not be answerable without looking at the image.</li>
-                                                <li>The question should require deep cultural understanding - not basic facts, or simple surface-level questions that only identify objects or basic attributes.</li>
-                                                <li><i><b>Tips:</b></i> Use phrases such as "shown in this image" or "visible here" or "in this scene" to ensure the question refers to the image.</li>
+                                                <li>Write one thoughtful question related to the cultural values that you see in the image.</li>
+                                                <li>The question should capture value-driven cultural understanding - not basic facts, or simple surface-level questions that only identify objects or basic attributes.</li>
+                                                <li>Question must refer to the image. <i><b>Tips:</b></i> Use phrases such as "shown in this image" or "visible here" or "in this scene" to ensure the question refers to the image.</li>
                                             </ul>
                                         </li>
                                         <li><b>Write a short answer to your question:</b><br>
                                             <ul>
-                                                <li>The answer (1-2 sentences) should explain the cultural value that you want to test.</li>
+                                                <li>In your own words, briefly answer your question (1-2 sentences is sufficient), explaining more about the cultural value that you would like to test. </li>
                                             </ul>
                                         </li>
                                     </ol>
@@ -134,9 +133,26 @@
                         
                         <div class="panel-body" style="padding: 20px;">
                             <div class="form-group" style="margin-bottom: 30px;">
-                                <h4 style="color: #800080; margin-bottom: 15px;">Concept:</h4>
-                                <input type="text" class="form-control" id="concept" readonly 
-                                       style="background-color: #f8f9fa;">
+                                <h4 style="color: #800080; margin-bottom: 8px;">Concept:</h4>
+                                <input type="text" id="concept" readonly 
+                                       style="background: none; 
+                                              font-size: 1.2em; 
+                                              font-weight: 700; 
+                                              width: 100%; 
+                                              padding: 0;
+                                              border: none;
+                                              color: #333;
+                                              margin-top: 0;
+                                              outline: none;">
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 30px;">
+                                <h4 style="color: #800080; margin-bottom: 15px;">Describe your thought process:</h4>
+                                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+                                    <textarea class="form-control" id="thoughtProcess" rows="3"
+                                              placeholder="Briefly explain how this image connects to your values and cultural experiences"
+                                              required></textarea>
+                                </div>
                             </div>
 
                             <div class="form-group" style="margin-bottom: 30px;">
@@ -178,14 +194,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" style="margin-bottom: 30px;">
-                                <h4 style="color: #800080; margin-bottom: 15px;">Describe your thought process for choosing the image:</h4>
-                                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
-                                    <textarea class="form-control" id="thoughtProcess" rows="3"
-                                              placeholder="Briefly explain how this image connects to your values and cultural experiences"
-                                              required></textarea>
-                                </div>
-                            </div>
+                            
 
                             <div class="form-group" style="margin-bottom: 30px;">
                                 <h4 style="color: #800080; margin-bottom: 15px;">Question:</h4>

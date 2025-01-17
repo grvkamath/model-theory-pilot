@@ -140,8 +140,13 @@ function make_slides(f) {
       exp.data = {
         "trials": exp.data_trials,
         "catch_trials": exp.catch_trials,
-        "subject_information": exp.subj_data,
-        "time_in_minutes": (Date.now() - exp.startT) / 60000
+        "system": {
+          "Browser": BrowserDetect.browser,
+          "OS": BrowserDetect.OS,
+          "PROLIFIC_PID": exp.prolific_id,
+          "time_in_minutes": (Date.now() - exp.startT)/60000
+        },
+        "subject_information": exp.subj_data
       };
       proliferate.submit(exp.data);
     }
@@ -189,7 +194,8 @@ function init() {
   exp.country = countries[country];
 
   // Load country-specific content
-  loadCountryContent(country);
+  console.log(exp.country);
+  loadCountryContent(countries[country]);
 
   // Define experiment structure - only 3 slides
   exp.structure = [
@@ -213,6 +219,17 @@ function init() {
 
   // Start experiment
   exp.go();
+
+  // Add this near the start of init()
+  exp.prolific_id = getUrlParameter('PROLIFIC_PID') || 'unknown';
+}
+
+// Add this helper function if you don't have it
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
 /* Comment out or remove old code:
