@@ -8,6 +8,7 @@ def create_stimulus(data_path, output_path, num_examples=10):
 
     # Create a new file which is list of dicts with the following keys:
     # concept, category, id
+    count = 0
     stimuli = []
     for i, (k, v) in enumerate(data.items()):
         for j, concept in enumerate(v):
@@ -17,9 +18,10 @@ def create_stimulus(data_path, output_path, num_examples=10):
                 "id": f"{j:04d}_{concept}"
             }
             stimuli.append(stimulus)
+            count+=1
     
-    
-    
+    print(count)
+
     # Shuffle the stimuli
     random.seed(42)
     random.shuffle(stimuli)
@@ -32,4 +34,4 @@ def create_stimulus(data_path, output_path, num_examples=10):
 
 
 if __name__ == "__main__":
-    create_stimulus("/Users/bajuka/Desktop/CulturalVQA/CulturalConv/MCA/data/cult_to_text_small.json", "js/stimuli.json", num_examples=10)
+    create_stimulus("/Users/bajuka/Desktop/CulturalVQA/CulturalConv/MCA/data/cult_final_shravan.json", "js/stimuli.json", num_examples=100)
