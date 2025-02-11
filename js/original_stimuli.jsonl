@@ -1,0 +1,10 @@
+{"SentenceA":"A younger woman and older man are running on treadmills next to each other.","SentenceB":"The runners' heart rates are higher than if they were seated.","gold_label":"entailment","pavlick_data_index":353}
+{"SentenceA":"An asian long-haired man wearing a yellow hat& long-sleeved shirt talking on a microphone","SentenceB":"An Asian man wearing a yellow hat is talking on a microphone to a large crowd.","gold_label":"neutral","pavlick_data_index":186}
+{"SentenceA":"A man sitting at a drum set.","SentenceB":"A drummer sings while sitting at a drum set.","gold_label":"neutral","pavlick_data_index":203}
+{"SentenceA":"Two police officers wearing florescent vests standing on the sidewalk while people pass by.","SentenceB":"Some people are wearing orange vests.","gold_label":"neutral","pavlick_data_index":299}
+{"SentenceA":"An elderly woman places carrots into a casserole.","SentenceB":"An elderly woman puts beets into a casserole","gold_label":"contradiction","pavlick_data_index":380}
+{"SentenceA":"A snowboarder is going down a snowy hill next to a staircase behind a building.","SentenceB":"a snowboarder does tricks near the stairs","gold_label":"neutral","pavlick_data_index":337}
+{"SentenceA":"People standing around laughing at a woman sitting on the ground covered in cake.","SentenceB":"The woman tripped and fell on the cake.","gold_label":"neutral","pavlick_data_index":29}
+{"SentenceA":"A little girl rides a tricycle.","SentenceB":"The girl is on the playground.","gold_label":"neutral","pavlick_data_index":219}
+{"SentenceA":"View through an alley of pedestrians passing by.","SentenceB":"People are sitting at a coffee shop.","gold_label":"contradiction","pavlick_data_index":469}
+{"SentenceA":"Three men in reflective suits in a field.","SentenceB":"three men are in a field trying to find oil","gold_label":"neutral","pavlick_data_index":118}

@@ -76,6 +76,8 @@ function make_slides(f) {
       exp.data_trials.push({
         "SentenceA": currentStim.SentenceA,
         "SentenceB": currentStim.SentenceB,
+        "gold_label": currentStim.gold_label,
+        "pavlick_data_index": currentStim.pavlick_data_index,
         "rationale": $("#rationale").val(),
         "nli_judgment": $("input[name='nli_judgment']:checked").val(),
         "time_in_minutes": (Date.now() - exp.startT) / 60000
@@ -92,7 +94,7 @@ function make_slides(f) {
       exp.data = {
         "trials": exp.data_trials,
         "catch_trials": exp.catch_trials,
-        "subject_information": exp.add_data
+        "additional_information": exp.add_data
       };
       proliferate.submit(exp.data);
     }
@@ -106,7 +108,8 @@ function init() {
   exp.catch_trials = [];
   var stimuli = all_stims;
   var list_index = parseInt(get_url_param("list", 0));
-  exp.stimuli = stimuli[list_index]; // Load entire stimulus list
+  exp.stimuli = stimuli[list_index]; // Load stimulus sublist
+  exp.stimuli = _.shuffle(exp.stimuli); // Shuffle stimuli
   exp.structure = ["i0", "example", "startExp", "main", "add_info"];
   exp.data_trials = [];
   exp.slides = make_slides(exp);
