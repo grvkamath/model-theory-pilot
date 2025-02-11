@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Natural Language Inference Judgments</title>
+    
+    <!-- external general utilities -->
+    <script src="shared/js/jquery-1.11.1.min.js"></script>
+    <script src="shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="shared/js/underscore-min.js"></script>
+
+    <!-- experiment logic -->
+    <script src="shared/js/exp-V2.js"></script>
+    <script src="shared/js/stream-V2.js"></script>
+
+    <!-- utilities to submit data to proliferate -->
+    <script src="https://proliferate.alps.science/static/js/proliferate.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- general utilities -->
+    <script src="shared/js/browserCheck.js"></script>
+    <script src="shared/js/utils.js"></script>
+    <link href="shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="shared/css/cocolab-style.css" rel="stylesheet" type="text/css">
+
+    <!-- experiment file -->
+    <script src="js/experiment.js"></script>
+    <script src="js/stimuli.js"></script>
+
+    <style>
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            color: #333333;
+            font-size: 14pt;
+        }
+        
+        .panel-body {
+            text-align: left;
+        }
+
+        .err {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <noscript>This task requires JavaScript.</noscript>
+
+    <!-- initial slide -->
+    <div class="slide" id="i0">
+        <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
+        <section class="container" id="SET1" style="padding: 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:14pt;">
+            <div class="row col-xs-12 col-md-12">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-primary" style="border-color: #800080">
+                        <div class="panel-heading" style="background-image: none;background-color:#800080;border-color: #800080">
+                            <strong>Natural Language Inference Judgments</strong>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                We're interested in the rationale used by native English speakers to reach certain inferences. In this task, you will be presented with a sentence and asked to judge whether a second sentence follows from the first. You will also be asked to provide a brief explanation of your judgment: how did you arrive at your conclusion one way or another?
+                            </p>
+                            <div style="text-align: center; margin-top: 30px;">
+                                <button id="start_button" class="btn btn-lg btn-primary" style="background-color: #800080; border-color: #800080;">
+                                    Start Experiment
+                                </button>
+                            </div>
+                            <hr>
+                            <p class="legal" style="font-size: 0.8em; color: #666;">
+                                <strong>LEGAL INFORMATION</strong>:<br><br>
+                                I consent to take part in the study. I agree to the anonymous use of the data in research presentations, publications, and online interactive sites to illustrate the findings. I agree that the collected data could be used in related follow-up studies. I agree to the use of the data in a not-for-profit anonymous corpus for research purposes which others will have access to.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+<!-- task example slide -->
+<div class="slide" id="example">
+    <section class="container" id="SET1" style="padding: 10px;">
+        <div class="row">
+            <!-- Response Collection Form -->
+            <div class="panel panel-primary" style="border-color: #800080; margin: 0 auto; transform: translateX(-7%);">
+                <div class="panel-heading" style="background-image: none;background-color:#800080;border-color: #800080">
+                    <strong>Example</strong>
+                </div>
+                <p style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                    This is an example of the task. You are provided with two sentences and asked to judge whether the second sentence follows from the first. You are also asked to provide a brief explanation of your judgment.
+                </p>
+                <div class="panel-body" style="padding: 20px;">
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <span style="color: #318500; margin-bottom: 8px;">
+                            Sentence A: All llamas wear hats.
+                        </span>
+                    </div>
+                
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <span style="color: #d65600; margin-bottom: 8px;">
+                            Sentence B: Some llamas wear hats.
+                        </span>
+                    </div>                
+                
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <h4 style="color: #000000; margin-bottom: 15px;">
+                            If Sentence A is true, then is Sentence B <i>most likely true</i>, 
+                            <i>most likely false</i>, or <i>equally likely to be true or false</i>?
+                        </h4>
+                    </div>
+                
+                    <div class="form-group" style="margin-bottom: 20px; text-align: left; padding-left: 20px;">
+                        <table style="width: 100%; text-align: center; margin: 0 auto;">
+                            <tr>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=0 id="psuedo_true_option" checked disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=1 id="psuedo_equal_option" disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=2 id="psuedo_false_option" disabled></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-check-label" for="psuedo_true_option">Most Likely True</label></td>
+                                <td><label class="form-check-label" for="psuedo_equal_option">Equally Likely</label></td>
+                                <td><label class="form-check-label" for="psuedo_false_option">Most Likely False</label></td>
+                            </tr>
+                            <tr>
+                                <td><small>A strong belief that B follows from A</small></td>
+                                <td><small>Uncertainty about B given A</small></td>
+                                <td><small>A strong belief that B does not follow from A</small></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <h4 style="color: #800080; margin-bottom: 15px;">Your Rationale:</h4>
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+                        <textarea class="form-control" id="psuedo_rationale" rows="2" readonly>
+Since all llamas wear hats, at least some llamas must wear hats. Sentence B logically follows from Sentence A.
+                        </textarea>
+                    </div>
+                </div>
+                    
+                <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                    <button id="start_button" class="btn btn-lg btn-primary continueButton" 
+                            onclick="_s.button()"
+                            style="background-color: #800080; 
+                                   border-color: #800080; 
+                                   padding: 15px 40px; 
+                                   font-size: 18px;">
+                        I understand the task!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- main instructions slide -->
+<div class="slide" id="startExp">
+    <br>
+    <br>
+    <p id="instruct-text" class="left">
+      Great! Now we can start the real experiment. You will be presented with roughly 10 such sentence pairs, and asked to provide your judgments and rationales.
+      At the end, you'll also be able to provide any extra feedback about the the task as a whole (only if you'd like to!).  
+    </p>
+    <div class="center">
+      <button class="btn btn-lg btn-primary continueButton" onclick="_s.button()">Begin</button>
+    </div>
+  </div>
+
+<!-- main task slide -->
+<div class="slide" id="main">
+    <section class="container" id="SET1" style="padding: 10px;">
+        <div class="row">
+            <!-- Response Collection Form -->
+            <div class="panel panel-primary" style="border-color: #800080; margin: 0 auto; transform: translateX(-7%);">
+                <div class="panel-heading" style="background-image: none;background-color:#800080;border-color: #800080">
+                    <strong>Submit your Response</strong>
+                </div>
+                
+                <div class="panel-body" style="padding: 20px;">
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <span style="color: #318500; margin-bottom: 8px;">
+                            Sentence A: 
+                        </span>
+                        <span style="color: #318500; margin-bottom: 8px;" id="SentenceA">
+                            {{SentenceA}}
+                        </span>
+                    </div>
+                
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <span style="color: #d65600; margin-bottom: 8px;">
+                            Sentence B: 
+                        </span>
+                        <span style="color: #d65600; margin-bottom: 8px;" id="SentenceB">
+                            {{SentenceB}}
+                        </span>
+                    </div>                
+                
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <h4 style="color: #000000; margin-bottom: 15px;">
+                            If Sentence A is true, then is Sentence B <i>most likely true</i>, 
+                            <i>most likely false</i>, or <i>equally likely to be true or false</i>?
+                        </h4>
+                    </div>
+                
+                    <div class="form-group" style="margin-bottom: 20px; text-align: left; padding-left: 20px;">
+                        <table style="width: 100%; text-align: center; margin: 0 auto;">
+                            <tr>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=0 id="true_option"></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=1 id="equal_option"></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=2 id="false_option"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-check-label" for="true_option">Most Likely True</label></td>
+                                <td><label class="form-check-label" for="equal_option">Equally Likely</label></td>
+                                <td><label class="form-check-label" for="false_option">Most Likely False</label></td>
+                            </tr>
+                            <tr>
+                                <td><small>A strong belief that B follows from A</small></td>
+                                <td><small>Uncertainty about B given A</small></td>
+                                <td><small>A strong belief that B does not follow from A</small></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                    
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <h4 style="color: #800080; margin-bottom: 15px;">Your Rationale:</h4>
+                        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+                            <textarea class="form-control" id="rationale" rows="2"
+                                      placeholder="Explain your rationale: how did you arrive at the answer you chose?"
+                                      required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                        <button class="btn btn-lg btn-primary continueButton" 
+                                onclick="_s.button()"
+                                style="background-color: #800080; 
+                                       border-color: #800080; 
+                                       padding: 15px 40px; 
+                                       font-size: 18px;">
+                            Continue
+                        </button>
+                        <div class="err" style="color: #dc3545; margin-top: 10px;">
+                            Please fill in all required fields before continuing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+    <!-- additional information slide -->
+    <div class="slide" id="add_info">
+        <section class="container" id="SET1" style="padding: 10px;">
+            <div class="row" style="display: flex; justify-content: center;">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-primary" style="border-color: #800080">
+                        <div class="panel-heading" style="background-image: none;background-color:#800080;border-color: #800080">
+                            <strong>Additional Information</strong>
+                        </div>
+                        <div class="panel-body">
+                            <!-- <p class="text-muted">
+                                Answering these questions is optional, but will help us understand your answers better.
+                            </p> -->
+
+                            <div class="form-group" style="margin-bottom: 30px;">
+                                <h4 style="color: #800080; margin-bottom: 15px;">(Optional) Any Additional Comments About the Task?</h4>
+                                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+                                    <textarea class="form-control" id="comments" rows="3" 
+                                              placeholder="(Optional) Please share your thoughts here..."></textarea>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; margin-top: 30px;">
+                                <button onclick="_s.submit()" 
+                                        class="btn btn-lg btn-primary" 
+                                        style="background-color: #800080; border-color: #800080;">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
