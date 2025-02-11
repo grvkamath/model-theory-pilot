@@ -1,2 +1,2 @@
-# culturalstudy.github.io
-Website for hosting cultural studies
+# model-theory-pilot
+Pilot study for an experiment on natural language inference. 
