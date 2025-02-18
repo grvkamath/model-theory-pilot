@@ -61,7 +61,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                We're interested in the rationale used by native English speakers to reach certain inferences. In this task, you will be presented with a sentence or phrase and asked to judge whether a second sentence or phrase follows from the first. You will also be asked to provide a brief explanation of your judgment: how did you arrive at your conclusion one way or another?
+                                We're interested in the rationale used by native English speakers to reach certain inferences. In this task, you will be presented with a sentence or phrase and asked to judge whether a second sentence or phrase is likely to be true or false given the first. You will also be asked to provide a brief explanation of your judgment: how did you arrive at your conclusion one way or another?
                             </p>
                             <div style="text-align: center; margin-top: 30px;">
                                 <button id="start_button" class="btn btn-lg btn-primary" style="background-color: #800080; border-color: #800080;">
@@ -83,7 +83,7 @@
 
 
 <!-- task example slide -->
-<div class="slide" id="example">
+<div class="slide" id="example1">
     <section class="container" id="SET1" style="padding: 10px;">
         <div class="row">
             <!-- Response Collection Form -->
@@ -92,7 +92,7 @@
                     <strong>Example</strong>
                 </div>
                 <p style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-                    This is an example of the task. You are provided with two sentences/phrases and asked to judge whether the second sentence/phrase follows from the first. You are also asked to provide a brief explanation of your judgment. Don't worry about any minor grammatical mistakes in the sentences/phrases.
+                    This is an example of the task. You are provided with two sentences/phrases and asked to judge whether the second sentence/phrase is likely to be true or false given the first. You are also asked to provide a brief explanation of your judgment. Don't worry about any minor grammatical mistakes in the sentences/phrases.
                 </p>
                 <div class="panel-body" style="padding: 20px;">
                     <div class="form-group" style="margin-bottom: 30px;">
@@ -117,19 +117,19 @@
                     <div class="form-group" style="margin-bottom: 20px; text-align: left; padding-left: 20px;">
                         <table style="width: 100%; text-align: center; margin: 0 auto;">
                             <tr>
-                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=0 id="psuedo_true_option" checked disabled></td>
-                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=1 id="psuedo_equal_option" disabled></td>
-                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=2 id="psuedo_false_option" disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=0 id="psuedo_true_option1" checked disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=1 id="psuedo_equal_option1" disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=2 id="psuedo_false_option1" disabled></td>
                             </tr>
                             <tr>
-                                <td><label class="form-check-label" for="psuedo_true_option">Most Likely True</label></td>
-                                <td><label class="form-check-label" for="psuedo_equal_option">Equally Likely</label></td>
-                                <td><label class="form-check-label" for="psuedo_false_option">Most Likely False</label></td>
+                                <td><label class="form-check-label" for="psuedo_true_option1">Most Likely True</label></td>
+                                <td><label class="form-check-label" for="psuedo_equal_option1">Equally Likely</label></td>
+                                <td><label class="form-check-label" for="psuedo_false_option1">Most Likely False</label></td>
                             </tr>
                             <tr>
-                                <td><small>A strong belief that B follows from A</small></td>
+                                <td><small>A strong belief that B is true given A</small></td>
                                 <td><small>Uncertainty about B given A</small></td>
-                                <td><small>A strong belief that B does not follow from A</small></td>
+                                <td><small>A strong belief that B is false given A</small></td>
                             </tr>
                         </table>
                     </div>
@@ -138,8 +138,86 @@
                 <div class="form-group" style="margin-bottom: 30px;">
                     <h4 style="color: #800080; margin-bottom: 15px;">Your Rationale:</h4>
                     <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
-                        <textarea class="form-control" id="psuedo_rationale" rows="2" readonly>
+                        <textarea class="form-control" id="psuedo_rationale1" rows="2" readonly>
                             If two men are walking parallel to two women, then this also means that there are two people (the two men) walking next to the women.
+                        </textarea>
+                    </div>
+                </div>
+                    
+                <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                    <button id="start_button" class="btn btn-lg btn-primary continueButton" 
+                            onclick="_s.button()"
+                            style="background-color: #800080; 
+                                   border-color: #800080; 
+                                   padding: 15px 40px; 
+                                   font-size: 18px;">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- task example slide -->
+<div class="slide" id="example2">
+    <section class="container" id="SET1" style="padding: 10px;">
+        <div class="row">
+            <!-- Response Collection Form -->
+            <div class="panel panel-primary" style="border-color: #800080; margin: 0 auto; transform: translateX(-7%);">
+                <div class="panel-heading" style="background-image: none;background-color:#800080;border-color: #800080">
+                    <strong>Example</strong>
+                </div>
+                <p style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                    Here is another example of the task. Once again, you are provided with two sentences/phrases and asked to judge whether the second sentence/phrase is likely to be true or false given the first, and asked to provide a brief explanation of your judgment. Don't worry about any minor grammatical mistakes in the sentences/phrases.
+                </p>
+                <div class="panel-body" style="padding: 20px;">
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <span style="color: #318500; margin-bottom: 8px;">
+                            Sentence A: The double sink is freshly polished chrome. 
+                        </span>
+                    </div>
+                
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <span style="color: #d65600; margin-bottom: 8px;">
+                            Sentence B: The sink is dull. 
+                        </span>
+                    </div>                
+                
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <h4 style="color: #000000; margin-bottom: 15px;">
+                            If Sentence A is true, then is Sentence B <i>most likely true</i>, 
+                            <i>most likely false</i>, or <i>equally likely to be true or false</i>?
+                        </h4>
+                    </div>
+                
+                    <div class="form-group" style="margin-bottom: 20px; text-align: left; padding-left: 20px;">
+                        <table style="width: 100%; text-align: center; margin: 0 auto;">
+                            <tr>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=0 id="psuedo_true_option2" disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=1 id="psuedo_equal_option2" disabled></td>
+                                <td><input class="form-check-input" type="radio" name="nli_judgment" value=2 id="psuedo_false_option2" checked disabled></td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-check-label" for="psuedo_true_option2">Most Likely True</label></td>
+                                <td><label class="form-check-label" for="psuedo_equal_option2">Equally Likely</label></td>
+                                <td><label class="form-check-label" for="psuedo_false_option2">Most Likely False</label></td>
+                            </tr>
+                            <tr>
+                                <td><small>A strong belief that B is true given A</small></td>
+                                <td><small>Uncertainty about B given A</small></td>
+                                <td><small>A strong belief that B is false given A</small></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <h4 style="color: #800080; margin-bottom: 15px;">Your Rationale:</h4>
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+                        <textarea class="form-control" id="psuedo_rationale2" rows="2" readonly>
+                            The sink is mentioned as having been freshly polished, so it is probably not dull.
                         </textarea>
                     </div>
                 </div>
@@ -222,9 +300,9 @@
                                 <td><label class="form-check-label" for="false_option">Most Likely False</label></td>
                             </tr>
                             <tr>
-                                <td><small>A strong belief that B follows from A</small></td>
+                                <td><small>A strong belief that B is true given A</small></td>
                                 <td><small>Uncertainty about B given A</small></td>
-                                <td><small>A strong belief that B does not follow from A</small></td>
+                                <td><small>A strong belief that B is false given A</small></td>
                             </tr>
                         </table>
                     </div>

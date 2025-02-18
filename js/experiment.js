@@ -8,14 +8,35 @@ function make_slides(f) {
     }
   });
 
-  slides.example = slide({
-    name: "example",
+  slides.example1 = slide({
+    name: "example1",
     start: function() {
+      setTimeout(() => {
+        $("#psuedo_true_option1").prop("disabled", false);
+        $("#psuedo_true_option1").prop("checked", true);
+        $("#psuedo_true_option1").prop("disabled", true);
+      }, 10);
     },
     button: function() {
       exp.go();
     }
   });
+  
+
+  slides.example2 = slide({
+    name: "example2",
+    start: function() {
+      setTimeout(() => {
+        $("#psuedo_false_option2").prop("disabled", false);
+        $("#psuedo_false_option2").prop("checked", true);
+        $("#psuedo_false_option2").prop("disabled", true);
+      }, 10);
+    },
+    button: function() {
+      exp.go();
+    }
+  });
+  
 
   slides.startExp = slide({
     name: "startExp",
@@ -110,7 +131,7 @@ function init() {
   var list_index = parseInt(get_url_param("list", 0));
   exp.stimuli = stimuli[list_index]; // Load stimulus sublist
   exp.stimuli = _.shuffle(exp.stimuli); // Shuffle stimuli
-  exp.structure = ["i0", "example", "startExp", "main", "add_info"];
+  exp.structure = ["i0", "example1", "example2", "startExp", "main", "add_info"];
   exp.data_trials = [];
   exp.slides = make_slides(exp);
   $('.slide').hide();
